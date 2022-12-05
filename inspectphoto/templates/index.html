@@ -20,13 +20,27 @@
 </head>
 
 <body style="background-color: black;">
+   <footer class="mt-auto py-3 bg-dark">
+      <div class="container">
+         <div class="row">
+            <div class="col text-start">
+               <span class="text-muted fs-6">v0.1</span>
+            </div>
+
+               <div class="col" style="color: antiquewhite;">
+                  <h1>Photo inspector</h1>
+               </div>
+            <div class="col text-end">
+               <a href="https://www.paypal.com/donate/?business=7HRKKHKTPEXRU&no_recurring=0&currency_code=EUR" 
+               target="_blank" type="button" class="btn btn-secondary btn-sm"> Buy me a beer!</a>
+            </div>
+         </div>
+      </div>
+   </footer>
    <div class="container">
       <!-- Content here -->
-      <div class="row mt-1" style="color: antiquewhite;">
-         <h1>Photo inspector</h1>
-      </div>
       <div class="row mt-1">
-         <div class="input-group mb-3">
+         <div class="input-group mb-3 mt-1">
             <input class="form-control" type="file" id="formFile">
             <div class="input-group-append">
                <button class="btn btn-outline-light" type="button" id="loadButton">Load</button>
@@ -39,7 +53,7 @@
                <img id="preview"/>
             </div>
             <div class="row">
-               <table class="table shadow p-2 m-2  rounded" id="info" style="background-color:antiquewhite">
+               <table class="table shadow p-2 m-2  rounded mb-30" id="info" style="background-color:antiquewhite">
                </table>
             </div>
          </div>
@@ -49,19 +63,7 @@
       </div>
    </div>
 
-   <footer class="fixed-bottom mt-auto py-3 bg-dark">
-      <div class="container">
-         <div class="row">
-            <div class="col text-start">
-               <span class="text-muted fs-6">v0.1</span>
-            </div>
-            <div class="col text-end">
-               <a href="https://www.paypal.com/donate/?business=7HRKKHKTPEXRU&no_recurring=0&currency_code=EUR" 
-               target="_blank" type="button" class="btn btn-secondary btn-sm"> Buy me a beer!</a>
-            </div>
-         </div>
-      </div>
-   </footer>
+
    
 
    <script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
