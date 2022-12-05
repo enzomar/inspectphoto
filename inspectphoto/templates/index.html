@@ -16,6 +16,16 @@
             min-height: 100%;
             height: 100%;
          }
+
+      .dropzone {
+         background: white;
+         border-radius: 5px;
+         border: 2px dashed rgb(0, 135, 247);
+         border-image: none;
+         max-width: 500px;
+         margin-left: auto;
+         margin-right: auto;
+      }
    </style>
 </head>
 
@@ -73,6 +83,7 @@
    <script>
 
       var map;
+      var fileurl;
 
       $(document).ready(function () {
 
@@ -146,6 +157,8 @@
       };
 
       function showAll(info){
+         $("#preview").attr("src", fileurl);
+
          showInfo(info);
          var long = info['Long'];
          var lat = info['Lat'];
@@ -161,8 +174,10 @@
          var fd = new FormData();
          var file = $('#formFile')[0].files[0];
          fd.append('file', file);
+         fileurl = URL.createObjectURL(file);
 
-         $("#preview").attr("src", URL.createObjectURL(file));
+         var waitgif = "{{ url_for('static',filename='img/loading-gif.gif')}}"
+         $("#preview").attr("src", waitgif);
 
          $.ajax({
             url: '/inspect', 

@@ -1,0 +1,1 @@
+{"id":"d0413d31-dfa1-40f0-8941-0fed5f7c922e","space":39173,"runtime":"python3.9","name":"inspectphoto","path":"n4gf9m","project":"a0f68prr","account":"144798365827","region":"eu-central-1","deps":["werkzeug","flask","Pillow"],"envs":null,"public":true,"log_level":"off","cron":""}
