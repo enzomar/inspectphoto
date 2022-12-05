@@ -11,7 +11,7 @@ jobs:
         shell: bash
         run: |
           pip install virtualenv
-          make unittest
+          echo `make unittest`
         
       # Install Deta CLI as per docs
       # https://docs.deta.sh/docs/cli/install
