@@ -59,9 +59,7 @@
       <div class="row mt-1">
          <div class="input-group mb-3 mt-1">
             <input class="form-control" type="file" id="formFile">
-            <div class="input-group-append">
-               <button class="btn btn-outline-light" type="button" id="loadButton">Load</button>
-             </div>
+            <div class="input-group-append"></div>
           </div>
       </div>
       <div class="row" style="margin-right: 0; margin-left: 0">
@@ -107,12 +105,9 @@
 
       var map;
       var fileurl;
-      var colorcapture = false;
+      var colorcapture = true;
 
       $(document).ready(function () {
-
-         $("#info").hide(); 
-
          ol.proj.useGeographic();
 
          map = new ol.Map({
@@ -131,10 +126,25 @@
                zoom: 4
             })
          });
+         AllHide();
 
          showLocation(12.4573	,41.9019);
       });
 
+
+      function AllHide(){
+         $("#info").hide();
+         $("#preview").hide();
+         $("#address").hide();
+         $("#map").hide();
+      }
+
+      function AllShow(){
+         $("#info").show();
+         $("#preview").show();
+         $("#address").show();
+         $("#map").show();
+      }
 
       function drawImageScaled(img, ctx) {
    
@@ -240,7 +250,7 @@
       function showInfo(info){
 
          $("#info").empty(); 
-         $("#info").show(); 
+
          $.each(info, function(key, value) 
          {
             $("#info").append("<tr><td>"+key+"</td><td>"+value+"<td><tr>")
@@ -248,7 +258,6 @@
       };
 
       function showImg(fileurl, clear = true){
-
 
          // $("#preview").attr("src", fileurl);
          canvas  = document.getElementById("preview");
@@ -272,6 +281,7 @@
       }
 
       function showAll(info){
+         AllShow();
 
          showImg(fileurl);
 
@@ -281,12 +291,14 @@
          var lat = info['Lat'];
          if (long && lat){
             showLocation(long,lat);
-         }else{
-            showLocation(12.4573	,41.9019, false);
          }
+         /*
+         else{
+            showLocation(12.4573	,41.9019, false);
+         }*/
       };
 
-      $('#loadButton').on('click', function (e) {
+      $('#formFile').on('change', function (e) {
             var fd = new FormData();
             var file = $('#formFile')[0].files[0];
             fd.append('file', file);
