@@ -128,7 +128,7 @@
          });
          deactivate();
 
-         showLocation(12.4573	,41.9019);
+         showLocation(0,0);
       });
 
 
@@ -186,11 +186,13 @@
          if (layers.length > 0){
             map.removeLayer(map.getLayers().getArray()[1]);
          }
+         $('#address').html("Address not found.")     
+
          if (drawDot){
             map.addLayer(buildLayer(long, lat));
+            reverseGeocode(place);
          }
 
-         reverseGeocode(place);
 
          return false;
 
@@ -233,6 +235,8 @@
             let data = await response.json();
             let display_name = data['display_name']
             $('#address').html(display_name)     
+         }else{
+            $('#address').html("Address not found.")     
          }
       };
 
@@ -293,10 +297,9 @@
          if (long && lat){
             showLocation(long,lat);
          }
-         /*
          else{
-            showLocation(12.4573	,41.9019, false);
-         }*/
+            showLocation(0, 0, false);
+         }
       };
 
       $('#formFile').on('change', function (e) {
