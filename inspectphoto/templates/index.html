@@ -232,7 +232,6 @@
          if (response.status === 200) {
             let data = await response.json();
             let display_name = data['display_name']
-            console.log(display_name);
             $('#address').html(display_name)     
          }
       };
@@ -283,6 +282,7 @@
 
       function showAll(info){
          activate();
+         $("body").css("cursor", "default");
 
          showImg(fileurl);
 
@@ -304,6 +304,7 @@
             var file = $('#formFile')[0].files[0];
             fd.append('file', file);
             fileurl = URL.createObjectURL(file);
+            $("body").css("cursor", "progress");
 
             $.ajax({
                url: '/inspect', 
