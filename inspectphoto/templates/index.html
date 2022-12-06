@@ -69,6 +69,7 @@
                <div id="map" style="width: 100%; height:300px; margin: 0px; padding: 0px;"></div>
     
                <div class="myrow">
+                  <div id="address" style="color: chocolate;"></div>
                   <table class="table shadow rounded" id="info" style="background-color:antiquewhite; margin-top: 12px;">
                   </table>
                </div>
@@ -143,8 +144,7 @@
          var ratio  = Math.min ( hRatio, vRatio );
          var centerShift_x = ( canvas.width - img.width*ratio ) / 2;
          var centerShift_y = ( canvas.height - img.height*ratio ) / 2; 
-         console.log(centerShift_x); 
-         console.log(centerShift_y); 
+
 
          ctx.drawImage(img, centerShift_x,centerShift_y, img.width, img.height,
                            centerShift_x,centerShift_y, img.width*ratio, img.height*ratio);  
@@ -178,7 +178,9 @@
          if (drawDot){
             map.addLayer(buildLayer(long, lat));
          }
-         
+
+         reverseGeocode(place);
+
          return false;
 
       };
@@ -214,6 +216,16 @@
            colorcapture = !colorcapture;
       });
 
+      async function reverseGeocode(coords) {
+         let response = await fetch(('http://nominatim.openstreetmap.org/reverse?format=json&lon=' + coords[0] + '&lat=' + coords[1]));
+         if (response.status === 200) {
+            let data = await response.json();
+            let display_name = data['display_name']
+            console.log(display_name);
+            $('#address').html(display_name)     
+         }
+      };
+
       function rgbToHex(r, g, b) {
          if (r > 255 || g > 255 || b > 255)
             throw "Invalid color component";
@@ -237,13 +249,11 @@
 
       function showImg(fileurl, clear = true){
 
-         console.log("showImg: "+fileurl);
 
          // $("#preview").attr("src", fileurl);
          canvas  = document.getElementById("preview");
          if (canvas)
          {
-            console.log("Canvas is valid, let draw the image");
             context = canvas.getContext('2d');
 
             var img = new Image();
@@ -263,7 +273,6 @@
 
       function showAll(info){
 
-         console.log("showAll");
          showImg(fileurl);
 
 
