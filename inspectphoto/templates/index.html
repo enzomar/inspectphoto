@@ -126,24 +126,25 @@
                zoom: 4
             })
          });
-         AllHide();
+         deactivate();
 
          showLocation(12.4573	,41.9019);
       });
 
 
-      function AllHide(){
+      function deactivate(){
          $("#info").hide();
          $("#preview").hide();
          $("#address").hide();
          $("#map").hide();
       }
 
-      function AllShow(){
+      function activate(){
          $("#info").show();
          $("#preview").show();
          $("#address").show();
          $("#map").show();
+         colorcapture = true;
       }
 
       function drawImageScaled(img, ctx) {
@@ -281,7 +282,7 @@
       }
 
       function showAll(info){
-         AllShow();
+         activate();
 
          showImg(fileurl);
 
