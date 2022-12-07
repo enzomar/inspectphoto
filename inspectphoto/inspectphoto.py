@@ -60,7 +60,7 @@ def _get_info(image):
         # decode bytes 
         if isinstance(data, bytes):
             data = data.decode()
-        info_dict[tag] = str(data) 
+        info_dict[str(tag)] = str(data) 
 
 
     # info from exif - GPS
