@@ -315,7 +315,17 @@
                data: fd,
                contentType: false,
                processData: false,
-               success: showAll
+               success: showAll,
+               error: function(request, status, err) {
+                  if (status == "timeout") {
+                     // timeout -> reload the page and try again
+                     clearInterval(ajax_call);
+                     window.location.reload(); //make it comment if you don't want to reload page
+                  } else {
+                     // another error occured  
+                     alert("Error: " + request + status + err);
+                  }
+               }
             })
       });
 
