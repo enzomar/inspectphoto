@@ -4,6 +4,7 @@ import argparse
 from PIL import Image
 from PIL.Image import Exif
 from PIL.ExifTags import TAGS, GPSTAGS
+import palette
 
 
 
@@ -81,6 +82,18 @@ def _get_info(image):
         info_dict['Long'] = _dms_to_dd(lon, lon_ref)
     except:
         pass
+    
+    """
+    try:
+        hex, freq = palette.extract(image)
+        print(hex)
+        print(freq)
+        info_dict["Color"] = hex
+        info_dict["Frequency"] = freq
+    except Exception as ex:
+        print(str(ex))
+    """
+
  
     return info_dict
 

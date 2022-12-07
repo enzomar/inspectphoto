@@ -1,3 +1,7 @@
 werkzeug
 flask
 Pillow
+extcolors
+pandas
+easydev
+colormap
